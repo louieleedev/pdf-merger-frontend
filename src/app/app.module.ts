@@ -12,7 +12,6 @@ import {MatIconModule} from "@angular/material/icon";
 import { HeaderComponent } from './layout/header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { PdfSplitComponent } from './pages/pdf-split/pdf-split.component';
-import { LeavePageDialogComponent } from './shared/leave-page-dialog/leave-page-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { OverlayModule } from '@angular/cdk/overlay';
 
@@ -22,7 +21,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
     PdfMergeComponent,
     HeaderComponent,
     PdfSplitComponent,
-    LeavePageDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -22,40 +22,6 @@
     cdkDropListOrientation="horizontal"
     (cdkDropListDropped)="drop($event)"
   >
-<!--    <div-->
-<!--      class="pdf-card"-->
-<!--      *ngFor="let pdf of pdfs"-->
-<!--      cdkDrag-->
-<!--    >-->
-<!--      <img *ngIf="pdf.previewUrl" [src]="pdf.previewUrl" />-->
-<!--      <div class="filename">{{ pdf.file.name }}</div>-->
-<!--    </div>-->
-
-
-<!--    <div-->
-<!--      class="pdf-card"-->
-<!--      *ngFor="let pdf of pdfs; let i = index"-->
-<!--      cdkDrag-->
-<!--    >-->
-
-<!--      &lt;!&ndash; Delete Button &ndash;&gt;-->
-<!--      <button-->
-<!--        class="delete-btn"-->
-<!--        (click)="removePdf(i)"-->
-<!--        type="button"-->
-<!--      >-->
-<!--        ✕-->
-<!--      </button>-->
-
-<!--      &lt;!&ndash; Preview &ndash;&gt;-->
-<!--      <img *ngIf="pdf.previewUrl" [src]="pdf.previewUrl" />-->
-
-<!--      &lt;!&ndash; Filename &ndash;&gt;-->
-<!--      <div class="filename">-->
-<!--        {{ pdf.file.name }}-->
-<!--      </div>-->
-<!--    </div>-->
-
     <div
       class="pdf-card"
       *ngFor="let pdf of pdfs; let i = index"
@@ -81,8 +47,6 @@
       </div>
 
     </div>
-
-
   </div>
 
   <button
