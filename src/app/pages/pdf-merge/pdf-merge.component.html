@@ -1,0 +1,97 @@
+<mat-card class="container">
+
+  <h2>PDF Merger</h2>
+  <p>Select PDFs, drag to reorder, then merge.</p>
+
+  <input
+    type="file"
+    accept="application/pdf"
+    multiple
+    hidden
+    #fileInput
+    (change)="onFileSelected($event)"
+  />
+
+  <button mat-raised-button color="primary" (click)="fileInput.click()">
+    + Select PDF files
+  </button>
+
+  <div
+    class="pdf-grid"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)"
+  >
+<!--    <div-->
+<!--      class="pdf-card"-->
+<!--      *ngFor="let pdf of pdfs"-->
+<!--      cdkDrag-->
+<!--    >-->
+<!--      <img *ngIf="pdf.previewUrl" [src]="pdf.previewUrl" />-->
+<!--      <div class="filename">{{ pdf.file.name }}</div>-->
+<!--    </div>-->
+
+
+<!--    <div-->
+<!--      class="pdf-card"-->
+<!--      *ngFor="let pdf of pdfs; let i = index"-->
+<!--      cdkDrag-->
+<!--    >-->
+
+<!--      &lt;!&ndash; Delete Button &ndash;&gt;-->
+<!--      <button-->
+<!--        class="delete-btn"-->
+<!--        (click)="removePdf(i)"-->
+<!--        type="button"-->
+<!--      >-->
+<!--        ✕-->
+<!--      </button>-->
+
+<!--      &lt;!&ndash; Preview &ndash;&gt;-->
+<!--      <img *ngIf="pdf.previewUrl" [src]="pdf.previewUrl" />-->
+
+<!--      &lt;!&ndash; Filename &ndash;&gt;-->
+<!--      <div class="filename">-->
+<!--        {{ pdf.file.name }}-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div
+      class="pdf-card"
+      *ngFor="let pdf of pdfs; let i = index"
+      cdkDrag
+    >
+
+      <button
+        class="delete-btn"
+        type="button"
+        (click)="removePdf(i)"
+      >
+        ✕
+      </button>
+
+      <!-- Bild-Container -->
+      <div class="preview-container">
+        <img *ngIf="pdf.previewUrl" [src]="pdf.previewUrl" />
+      </div>
+
+      <!-- Titel -->
+      <div class="filename">
+        {{ pdf.file.name }}
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <button
+    mat-raised-button
+    color="accent"
+    class="merge-btn"
+    [disabled]="pdfs.length < 2"
+  >
+    Merge & Download
+  </button>
+
+</mat-card>

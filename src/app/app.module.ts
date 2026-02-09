@@ -12,13 +12,17 @@ import {MatIconModule} from "@angular/material/icon";
 import { HeaderComponent } from './layout/header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { PdfSplitComponent } from './pages/pdf-split/pdf-split.component';
+import { LeavePageDialogComponent } from './shared/leave-page-dialog/leave-page-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
     AppComponent,
     PdfMergeComponent,
     HeaderComponent,
-    PdfSplitComponent
+    PdfSplitComponent,
+    LeavePageDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { PdfSplitComponent } from './pages/pdf-split/pdf-split.component';
     MatCardModule,
     DragDropModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule,
+    OverlayModule
   ],
   providers: [],
   bootstrap: [AppComponent]
