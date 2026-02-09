@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as pdfjsLib from 'pdfjs-dist';
+import {CanLeavePage} from "../../guards/unsaved-files.guard";
 
 /**
  * View-Model für eine PDF-Datei inkl. Vorschau
@@ -17,7 +18,7 @@ interface PdfItem {
   templateUrl: './pdf-merge.component.html',
   styleUrls: ['./pdf-merge.component.css']
 })
-export class PdfMergeComponent {
+export class PdfMergeComponent implements CanLeavePage {
 
   /** Alle hochgeladenen PDFs in aktueller Reihenfolge */
   pdfs: PdfItem[] = [];
@@ -99,6 +100,10 @@ export class PdfMergeComponent {
   merge(): void {
     const filesInOrder = this.pdfs.map(p => p.file);
     console.log('Merge clicked', filesInOrder);
+  }
+
+  canLeave(): boolean {
+    return this.pdfs.length === 0;
   }
 
 }
