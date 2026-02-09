@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Seite verlassen?</h2>
+
+<mat-dialog-content>
+  <p>
+    Wenn Sie zu einem anderen Service wechseln,
+    gehen die bereits hochgeladenen Dateien verloren.
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Abbrechen</button>
+  <button mat-raised-button color="primary" (click)="confirm()">
+    Fortfahren
+  </button>
+</mat-dialog-actions>

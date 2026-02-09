@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as pdfjsLib from 'pdfjs-dist';
 import {CanLeavePage} from "../../guards/unsaved-files.guard";
+import {MatDialog} from "@angular/material/dialog";
+import {LeavePageDialogComponent} from "../../shared/leave-page-dialog/leave-page-dialog.component";
+import { take, map } from 'rxjs/operators';
 
 /**
  * View-Model für eine PDF-Datei inkl. Vorschau
@@ -22,6 +25,8 @@ export class PdfMergeComponent implements CanLeavePage {
 
   /** Alle hochgeladenen PDFs in aktueller Reihenfolge */
   pdfs: PdfItem[] = [];
+
+  constructor(private dialog: MatDialog) {}
 
   /**
    * Wird aufgerufen, wenn der User PDFs auswählt
@@ -102,8 +107,21 @@ export class PdfMergeComponent implements CanLeavePage {
     console.log('Merge clicked', filesInOrder);
   }
 
-  canLeave(): boolean {
-    return this.pdfs.length === 0;
+  canLeave() {
+    if (this.pdfs.length === 0) {
+      return true;
+    }
+
+    return this.dialog
+      .open(LeavePageDialogComponent, {
+        width: '400px',
+        disableClose: true
+      })
+      .afterClosed()
+      .pipe(
+        take(1),
+        map(result => result === true)
+      );
   }
 
 }

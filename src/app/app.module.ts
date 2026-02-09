@@ -14,6 +14,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { PdfSplitComponent } from './pages/pdf-split/pdf-split.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LeavePageDialogComponent } from './shared/leave-page-dialog/leave-page-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     PdfMergeComponent,
     HeaderComponent,
     PdfSplitComponent,
+    LeavePageDialogComponent,
   ],
   imports: [
     BrowserModule,
