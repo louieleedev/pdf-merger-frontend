@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  // TODO: apiUrl: 'https://deine-domain.de/api'
 };
