@@ -16,6 +16,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LeavePageDialogComponent } from './shared/leave-page-dialog/leave-page-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatDialogModule,
     OverlayModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

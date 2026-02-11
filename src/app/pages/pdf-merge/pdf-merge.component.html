@@ -49,6 +49,19 @@
     </div>
   </div>
 
+  <mat-form-field
+    appearance="outline"
+    class="filename-input"
+    *ngIf="pdfs.length >= 2"
+  >
+    <mat-label>Dateiname (ohne .pdf)</mat-label>
+    <input
+      matInput
+      [(ngModel)]="mergedFileName"
+      placeholder="z.B. meine-datei"
+    />
+  </mat-form-field>
+
   <button
     mat-raised-button
     color="accent"

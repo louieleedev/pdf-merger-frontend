@@ -28,6 +28,8 @@ export class PdfMergeComponent implements CanLeavePage {
   /** Alle hochgeladenen PDFs in aktueller Reihenfolge */
   pdfs: PdfItem[] = [];
 
+  mergedFileName: string = '';
+
   constructor(
     private dialog: MatDialog,
     private http: HttpClient
@@ -112,7 +114,6 @@ export class PdfMergeComponent implements CanLeavePage {
 
     const formData = new FormData();
 
-    // Reihenfolge bleibt erhalten!
     this.pdfs.forEach(pdf => {
       formData.append('files', pdf.file);
     });
@@ -128,7 +129,18 @@ export class PdfMergeComponent implements CanLeavePage {
         const a = document.createElement('a');
 
         a.href = url;
-        a.download = 'merged.pdf';
+
+        let fileName = this.mergedFileName?.trim();
+
+        if (!fileName) {fileName = 'merged';}
+
+        // Falls User ".pdf" nicht eingibt
+        if (!fileName.toLowerCase().endsWith('.pdf')) {
+          fileName += '.pdf';
+        }
+
+        a.download = fileName;
+
         a.click();
 
         window.URL.revokeObjectURL(url);
