@@ -5,6 +5,8 @@ import {CanLeavePage} from "../../guards/unsaved-files.guard";
 import {MatDialog} from "@angular/material/dialog";
 import {LeavePageDialogComponent} from "../../shared/leave-page-dialog/leave-page-dialog.component";
 import { take, map } from 'rxjs/operators';
+import {HttpClient} from "@angular/common/http";
+import { environment } from 'src/environments/environment';
 
 /**
  * View-Model für eine PDF-Datei inkl. Vorschau
@@ -26,7 +28,10 @@ export class PdfMergeComponent implements CanLeavePage {
   /** Alle hochgeladenen PDFs in aktueller Reihenfolge */
   pdfs: PdfItem[] = [];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private http: HttpClient
+  ) {}
 
   /**
    * Wird aufgerufen, wenn der User PDFs auswählt
@@ -99,13 +104,41 @@ export class PdfMergeComponent implements CanLeavePage {
     }
   }
 
-  /**
-   * Merge-Button (Backend kommt später)
-   */
   merge(): void {
-    const filesInOrder = this.pdfs.map(p => p.file);
-    console.log('Merge clicked', filesInOrder);
+
+    if (this.pdfs.length < 2) {
+      return;
+    }
+
+    const formData = new FormData();
+
+    // Reihenfolge bleibt erhalten!
+    this.pdfs.forEach(pdf => {
+      formData.append('files', pdf.file);
+    });
+
+    this.http.post(
+      `${environment.apiUrl}/pdf/merge`,
+      formData,
+      { responseType: 'blob' }
+    ).subscribe({
+      next: (blob: Blob) => {
+
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+
+        a.href = url;
+        a.download = 'merged.pdf';
+        a.click();
+
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Merge failed:', err);
+      }
+    });
   }
+
 
   canLeave() {
     if (this.pdfs.length === 0) {

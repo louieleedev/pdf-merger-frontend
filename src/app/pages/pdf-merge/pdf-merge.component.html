@@ -54,6 +54,7 @@
     color="accent"
     class="merge-btn"
     [disabled]="pdfs.length < 2"
+    (click)="merge()"
   >
     Merge & Download
   </button>
